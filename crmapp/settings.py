@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'crmapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crmeasy',
+        'NAME': 'crmeasy_db',
         'USER': 'root',
         'PASSWORD': 'root'
     }
