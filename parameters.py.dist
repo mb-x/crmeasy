@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+
+ENV_ROLE = ''
+db_name = ''
+db_user = ''
+db_pass = ''
+SECRET_KEY = ''

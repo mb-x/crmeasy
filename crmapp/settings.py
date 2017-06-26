@@ -12,6 +12,21 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+from parameters import *
+
+from django.core.exceptions import ImproperlyConfigured
+
+# Handling Key Import Errors
+def get_env_variable(var_name):
+    """ Get the environment variable or return exception """
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
+
+# Get ENV VARIABLES key
+# ENV_ROLE = get_env_variable('ENV_ROLE')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,10 +35,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&+$q(r*btc0*6vnr(+5f-isr6^7h5t@#7u4$8sdr0^tc#)dia9'
+# SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+CRMEASY_DB_PASS = False
+
+if ENV_ROLE == 'development':
+    DEBUG = True
+    #CRMEASY_DB_PASS = get_env_variable('CRMEASY_DB_PASS')
+
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -76,9 +98,9 @@ WSGI_APPLICATION = 'crmapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crmeasy_db',
-        'USER': 'root',
-        'PASSWORD': 'root'
+        'NAME': db_name,
+        'USER': db_user,
+        'PASSWORD': db_pass
     }
 }
 

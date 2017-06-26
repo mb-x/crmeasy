@@ -1,3 +1,5 @@
 .spyproject
 venv
 crmapp/__pycache__
+__pycache__
+parameters.py
